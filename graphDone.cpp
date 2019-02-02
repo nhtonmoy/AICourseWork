@@ -8,6 +8,10 @@ int main()
     int con[100][100];
     int s[100], d[100];
     int source, destination;
+
+
+    int maxS=0, maxD=0, maxN=0;
+
     for(int i = 0; i < edges; i++)
     {
         printf("Source and Destination for Edge %d:  ", i );
@@ -17,12 +21,30 @@ int main()
 
         con[source][destination]=1;
 
+
+
 //        for(int j = 0; j < edges; j++)
 //        {
 //            scanf("%d", &con[i][j]);
 //            //printf("\n%d %d %d\n%d\n",i,j, con[i][j],isConnected);
 //        }
     }
+
+    for(int i = 0; i<edges; i++)
+    {
+
+        for(int ms=0;ms<i;ms++)
+        {
+            if(s[i]>=s[ms]) maxS=s[i]; else maxS=s[ms];
+        }
+
+        for(int md=0;md<i;md++)
+        {
+            if(d[i]>=d[md]) maxD=d[i]; else maxD=d[md];
+        }
+    }
+
+
     int ds=0; //distinct sources
     bool isOnce=true;
     int sources[100], destinations[100];
@@ -84,16 +106,22 @@ int main()
     }
 
     int tnodes=0;
-    int maxN=0, minN=0;
-    if(ds>dd){maxN=ds;} else {maxN=dd;}
+
+
+    if(maxS>maxD){maxN=maxS;} else {maxN=maxD;}
+
+    printf("%d  %d  \n\n",maxS, maxD);
+    //return 0;
+
+
 
     bool isLineFinished=false;
-    for(int i = 0; i < maxN; i++)
+    for(int i = 0; i <= maxN; i++)
     {
         printf("\n    ");
         if(!isLineFinished)
         {
-            for(int x=0; x<maxN; x++)
+            for(int x=0; x<=maxN; x++)
             {
                 printf("E%d ",x);
             }
@@ -101,7 +129,7 @@ int main()
         }
         printf("\nV%d  ",i);
 
-        for(int j = 0; j < maxN; j++)
+        for(int j = 0; j <= maxN; j++)
         {
             printf("%d  ", con[i][j]);
         }
