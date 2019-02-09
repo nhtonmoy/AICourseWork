@@ -1,47 +1,49 @@
-#include<cstdio>
-#include<iostream>>
+#include<iostream>
+#include<sstream>
 using namespace std;
 
-int REFLEX_VACCUM_AGENT(int location, int state)
+
+string Agent(string arr[1][2])
 {
-    if(state==2)
+    string a = "";
+
+    if(arr[0][1] == "dirty")
     {
-        return 1;
+        a = "suck";
+    }
+    else if(arr[0][0] == "a")
+    {
+        if(arr[0][1] == "clean")
+            a = "right";
+        else
+            a = "Invalid Input";
+    }
+    else if(arr[0][0] == "b")
+    {
+        if(arr[0][1] == "clean")
+            a = "left";
+        else
+            a = "Invalid Input";
     }
     else
-    {
-        if(location==1)
-        {
-            return 2;
-        }
-        else if(location==2)
-        {
-            return 3;
-        }
-    }
+        a = "Invalid Input";
+
+    return a;
 }
 
 int main()
 {
-    int loc, st;
-    printf("Enter 1 for Clean, 2 for dirty\n");
-    printf("Enter Cleaner's Location: ");
+    while(1)
+    {
+        string location="",status="";
 
-    scanf("%d",&st);
-    if(st!=1  && st!=2) {printf("invalid input\n"); return 0;}
+        cout<<"Please enter location : ";
+        cin>>location;
+        cout<<"Please enter status : ";
+        cin>>status;
 
-    printf("Enter 1 for location A, 2 for location B\n");
-    printf("Enter cleaner's location: ");
-    scanf("%d",&loc);
+        string arr[1][2] = {location, status};
 
-    if(loc!=1 && loc!=2) {printf("invalid input\n"); return 0;}
-
-    int action=REFLEX_VACCUM_AGENT(loc, st);
-
-    if(action==1) printf("\nSuck\n");
-    else if(action==2) printf("\nRight\n");
-    else if(action==3) printf("\nLeft\n");
-
-    return 0;
+        cout<<Agent(arr)<<endl;
+    }
 }
-
