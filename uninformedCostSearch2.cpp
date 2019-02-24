@@ -4,19 +4,20 @@ using namespace std;
 int cost[1000][1000];
 int G[1000][1000];
 
-struct node{
+class Node{
+public:
     int x,y;
     int cost;
-    bool operator<(const node &b) const{
+    bool operator<(const Node &b) const{
         return cost>b.cost;
     }
 };
-void  Dijkstra(node root,int r,int c)
+void  ucs(Node root,int r,int c)
 {
-    priority_queue<node>pq;
+    priority_queue<Node>pq;
     pq.push(root);
     cost[root.x][root.y]=root.cost;
-    node temp,t;
+    Node temp,t;
     int x,y;
     int z;
     int xx,yy;
@@ -32,7 +33,7 @@ void  Dijkstra(node root,int r,int c)
             if(cost[xx][yy]>cost[temp.x][temp.y]+G[xx][yy])
             {
                 cost[xx][yy]=cost[temp.x][temp.y]+G[xx][yy];
-                node ab;
+                Node ab;
                 ab.x=xx;
                 ab.y=yy;
                 ab.cost=cost[xx][yy];
@@ -46,7 +47,7 @@ void  Dijkstra(node root,int r,int c)
             if(cost[xx][yy]>cost[temp.x][temp.y]+G[xx][yy])
             {
                 cost[xx][yy]=cost[temp.x][temp.y]+G[xx][yy];
-                node cd;
+                Node cd;
                 cd.x=xx;
                 cd.y=yy;
                 cd.cost=cost[xx][yy];
@@ -81,11 +82,11 @@ int main()
         }
     }
 //    cout<<"yo"<<endl;
-    node t;
+    Node t;
     t.x=0;
     t.y=0;
     t.cost=G[0][0];
-    Dijkstra(t,n,m);
+    ucs(t,n,m);
     cout<<"\nCost is : "<<cost[n-1][m-1]<<endl;
 
     return 0;
@@ -99,4 +100,3 @@ int main()
 537 699 497 121 956
 805 732 524 37 331
 */
-
