@@ -6,7 +6,7 @@ int x[100];
 int traversed[100];
 bool pr=true;
 int startNode, endNode;
-
+bool endFound=false;
 void bfs_visit(int u)
 {
     queue<int> Q;
@@ -18,10 +18,15 @@ void bfs_visit(int u)
 
         //cout<<endl<<'\t'<<Q.front()<<'\t'<<traversed[i];
 
-        if(!(u==0 && !pr))
+        if(!(u==startNode && !pr))
             cout<<u<<" ";
         Q.pop();
-        if(u==0) pr=false;
+        if(u==endNode)
+        {
+            endFound=true;
+            break;
+        }
+        if(u==startNode) pr=false;
 
 
         for(int v=0;v<n;v++)
@@ -49,7 +54,8 @@ void  bfs()
     {
         if(vis[i]==0)
         {
-            bfs_visit(i);
+            if(endFound==false)
+                bfs_visit(startNode);
         }
     }
 }
@@ -73,6 +79,7 @@ int main()
 
     cin>>startNode>>endNode;
     bfs();
+    if(endFound==false) cout<<endl<<"End node wasn't found"<<endl;
 }
 
 // 6 10 1 0 0 2 2 1 0 5 2 4 2 3 3 0 3 5 1 4 4 5
