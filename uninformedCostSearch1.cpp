@@ -6,21 +6,21 @@ int totalcost[100];
 int G[100][100];
 int H[100];
 
-class Node{
+class node{
 public:
     int x;
     int cost;
-    bool operator<(const Node &b) const{
+    bool operator<(const node &b) const{
         return cost>b.cost;
     }
 };
 
-void  ucs(Node root,int n)
+void  ucs(node root,int n)
 {
-    priority_queue<Node>pq;
+    priority_queue<node>pq;
     pq.push(root);
     cost[root.x]=root.cost;
-    Node temp,t;
+    node temp,t;
     int x,y;
 
     while(!pq.empty())
@@ -66,13 +66,8 @@ int main()
         G[x][y]=c;
     }
 
-    int goal, start;
-    cout<<"Enter starting node: ";
-    cin>>start;
-    cout<<"Enter goal node: ";
-    cin>>goal;
-    Node t;
-    t.x=start;
+    node t;
+    t.x=1;
     t.cost=0;
 //    cout<<"hi"<<endl;
     ucs(t,n);
@@ -83,13 +78,12 @@ int main()
 }
 
 
-/*
-7 10
+/*7 10
 1 2 5
 1 4 3
 2 3 1
 3 5 6
-3 7 8
+1 7 8
 7 5 4
 5 2 4
 4 5 2
