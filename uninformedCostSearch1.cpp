@@ -18,9 +18,9 @@ public:
 void  ucs(node root,int n)
 {
     priority_queue<node>pq; //priority queue of node type is created
-    pq.push(root); //queue te push korlam root object er attributes
-    cost[root.x]=root.cost; //cost array er root.x no element e root.cost insert korlam
-    node temp,t; //temp and t name er duita object create korlam
+    pq.push(root); //queue te push korlam root object er attributes, ekdom main function er parameter theke jeta first call hoise
+    cost[root.x]=root.cost; //cost array er root.x no element e root.cost insert korlam, first element er cost
+    node temp,t; //temp and t name e node class er duita object create korlam
     int x,y;
 
     while(!pq.empty()) //queue empty na howa porjonto cholte thakbe loop ta
